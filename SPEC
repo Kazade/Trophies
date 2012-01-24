@@ -1,0 +1,29 @@
+Trophy Files
+
+Trophy files define the trophies that can be awarded by an application. These trophies must be installed to:
+
+/usr/share/trophies/app-name/
+
+Where app-name must have an associated .desktop file in /usr/share/applications
+
+Trophy files must have a .trophy extension and have the following settings
+
+[Trophy]
+ID=123456 # (required) A unique UUID specific to this trophy
+Name=My Trophy # (required) A short name for this trophy
+Description=My Trophy # (optional - defaults to Name) A longer description of this trophy
+Is-Secret=True # (optional - defaults to false) Whether or not this is a secret trophy
+Score=10 #(optional - defaults to zero) The number of points this trophy is worth
+Icon=/usr/share/app-name/trophy-icons/my_trophy.png #(required) An absolute path to the trophy icon on the system
+Depends=2345,3456,7890 #(optional) a list of trophy IDs that must be unlocked before this one is
+Unlock-Automatically=True #(optional - defaults to false) Unlock this trophy automatically if all trophies in Depends have been
+
+Unlocking a trophy
+
+When a trophy is unlocked, a new file is created in $XDG_DATA_HOME/trophies/app-name/$ID.unlocked where ID 
+is the unique ID from the .trophy file. This file is another ini file that contains information about the unlock:
+
+[Unlock]
+Time=%Y-%m-%d %H:%M:%S
+
+
